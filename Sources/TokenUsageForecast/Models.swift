@@ -61,7 +61,7 @@ public struct UsageSample: Codable, Equatable, Sendable {
 }
 
 /// Tunable knobs for the forecasting model.
-/// Defaults mirror the values shown in the experiment screenshot.
+/// Defaults are tuned from prefix backtests over real quota traces.
 public struct ForecastParameters: Codable, Equatable, Sendable {
     /// Optional backtest/forecast cutoff in minutes from the beginning of the weekly window.
     /// `nil` means use the latest observed elapsed minute.
@@ -114,18 +114,18 @@ public struct ForecastParameters: Codable, Equatable, Sendable {
 
     public init(
         cutoffMinutes: Double? = nil,
-        maxIdleGapInsideSessionMinutes: Double = 25,
-        mergeNearbyFutureSessionCandidatesMinutes: Double = 105,
-        burstThresholdPercentPerHour: Double = 2.75,
-        minimumGainForIntenseClusterPercent: Double = 1,
-        recencyHalfLifeHours: Double = 3,
-        linearSessionBlendPercent: Double = 14,
-        dailyRhythmStrengthPercent: Double = 20,
-        frequencyAccelerationPercent: Double = 41,
-        backgroundIdleDriftPercentPerDay: Double = 11,
-        forecastResolutionMinutes: Double = 70,
-        optimisticActivityScale: Double = 1.30,
-        pessimisticActivityScale: Double = 1.50,
+        maxIdleGapInsideSessionMinutes: Double = 12.6,
+        mergeNearbyFutureSessionCandidatesMinutes: Double = 27.2,
+        burstThresholdPercentPerHour: Double = 1.41,
+        minimumGainForIntenseClusterPercent: Double = 0.48,
+        recencyHalfLifeHours: Double = 60,
+        linearSessionBlendPercent: Double = 35.3,
+        dailyRhythmStrengthPercent: Double = 88.6,
+        frequencyAccelerationPercent: Double = 53.3,
+        backgroundIdleDriftPercentPerDay: Double = 12.1,
+        forecastResolutionMinutes: Double = 10,
+        optimisticActivityScale: Double = 0.335,
+        pessimisticActivityScale: Double = 2.53,
         includeHeldoutSamples: Bool = true,
         includeCandidateDetails: Bool = true,
         capForecastAt100Percent: Bool = false
@@ -148,7 +148,7 @@ public struct ForecastParameters: Codable, Equatable, Sendable {
         self.capForecastAt100Percent = capForecastAt100Percent
     }
 
-    /// Defaults from the user's tuned screenshot.
+    /// Defaults tuned from 60...100% prefix backtests of quota traces.
     public static let defaults = ForecastParameters()
 
     /// Initial defaults from the first HTML prototype, useful when comparing results.

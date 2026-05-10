@@ -15,7 +15,7 @@ Forecasts are not capped at 100% by default.
 Add the package in Xcode or in `Package.swift`:
 
 ```swift
-.package(url: "https://github.com/pardeike/TokenUsageForecast.git", from: "1.0.0")
+.package(url: "https://github.com/pardeike/TokenUsageForecast.git", from: "1.1.0")
 ```
 
 Then depend on:
@@ -42,24 +42,24 @@ print(result.pessimistic.finalUsedPercent)
 print(result.sessions.count)
 ```
 
-## Screenshot-tuned default parameters
+## Prefix-backtest-tuned default parameters
 
-`ForecastParameters.defaults` mirrors the values from the tuned HTML screenshot:
+`ForecastParameters.defaults` is tuned from 60...100% prefix backtests over real quota traces:
 
 | Parameter | Default |
 |---|---:|
-| `maxIdleGapInsideSessionMinutes` | `25` |
-| `mergeNearbyFutureSessionCandidatesMinutes` | `105` |
-| `burstThresholdPercentPerHour` | `2.75` |
-| `minimumGainForIntenseClusterPercent` | `1` |
-| `recencyHalfLifeHours` | `3` |
-| `linearSessionBlendPercent` | `14` |
-| `dailyRhythmStrengthPercent` | `20` |
-| `frequencyAccelerationPercent` | `41` |
-| `backgroundIdleDriftPercentPerDay` | `11` |
-| `forecastResolutionMinutes` | `70` |
-| `optimisticActivityScale` | `1.30` |
-| `pessimisticActivityScale` | `1.50` |
+| `maxIdleGapInsideSessionMinutes` | `12.6` |
+| `mergeNearbyFutureSessionCandidatesMinutes` | `27.2` |
+| `burstThresholdPercentPerHour` | `1.41` |
+| `minimumGainForIntenseClusterPercent` | `0.48` |
+| `recencyHalfLifeHours` | `60` |
+| `linearSessionBlendPercent` | `35.3` |
+| `dailyRhythmStrengthPercent` | `88.6` |
+| `frequencyAccelerationPercent` | `53.3` |
+| `backgroundIdleDriftPercentPerDay` | `12.1` |
+| `forecastResolutionMinutes` | `10` |
+| `optimisticActivityScale` | `0.335` |
+| `pessimisticActivityScale` | `2.53` |
 | `includeHeldoutSamples` | `true` |
 | `includeCandidateDetails` | `true` |
 | `capForecastAt100Percent` | `false` |
